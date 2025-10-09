@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "warpKAN"
+version = "0.1.0"
+description = "GPU-accelerated Bounded and Unbounded  KAN"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "NVIDIA Corporation"},
+]
+requires-python = ">=3.7"
+
+dependencies = [
+    "numpy",
+    "warp-lang", 
+    "torch"
+]
+
+[project.urls]
+Homepage = "https://gitlab-master.nvidia.com/amoradzadeh/warpkan"
+
+[tool.setuptools.packages.find]
+where = ["."]
