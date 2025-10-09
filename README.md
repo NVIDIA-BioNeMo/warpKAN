@@ -24,3 +24,16 @@ pip install warpkan
 pip install -e .
 ```
 
+
+## Cite
+If you use this repository, please cite our paper:
+
+@misc{moradzadeh2025wanttrainkansscale,
+      title={Want to train KANS at scale? Now UKAN!}, 
+      author={Alireza Moradzadeh and Srimukh Prasad Veccham and Lukasz Wawrzyniak and Miles Macklin and Saee G. Paliwal},
+      year={2025},
+      eprint={2408.11200},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2408.11200}, 
+}
