@@ -28,6 +28,7 @@ pip install -e .
 ## Cite
 If you use this repository, please cite our paper:
 
+```bash
 @misc{moradzadeh2025wanttrainkansscale,
       title={Want to train KANS at scale? Now UKAN!}, 
       author={Alireza Moradzadeh and Srimukh Prasad Veccham and Lukasz Wawrzyniak and Miles Macklin and Saee G. Paliwal},
@@ -37,3 +38,4 @@ If you use this repository, please cite our paper:
       primaryClass={cs.LG},
       url={https://arxiv.org/abs/2408.11200}, 
 }
+```
