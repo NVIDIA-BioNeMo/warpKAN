@@ -1,26 +1,18 @@
-[build-system]
-requires = ["setuptools>=42", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[project]
+[tool.poetry]
 name = "warpKAN"
 version = "0.1.0"
-description = "GPU-accelerated Bounded and Unbounded  KAN"
+description = "GPU-accelerated Bounded and Unbounded KAN"
 readme = "README.md"
-license = {text = "Apache-2.0"}
-authors = [
-    {name = "NVIDIA Corporation"},
-]
-requires-python = ">=3.7"
+license = "Apache-2.0"
+authors = ["NVIDIA Corporation <info@nvidia.com>"]
+homepage = "https://github.com/NVIDIA-Digital-Bio/warpKAN"
 
-dependencies = [
-    "numpy",
-    "warp-lang", 
-    "torch"
-]
+[tool.poetry.dependencies]
+python = ">=3.7"
+numpy = "*"
+warp-lang = "*"
+torch = "*"
 
-[project.urls]
-Homepage = "https://gitlab-master.nvidia.com/amoradzadeh/warpkan"
-
-[tool.setuptools.packages.find]
-where = ["."]
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

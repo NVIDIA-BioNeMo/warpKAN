@@ -26,13 +26,7 @@ RUN apt-get update > /dev/null && \
     echo ". ${CONDA_DIR}/etc/profile.d/conda.sh && conda activate base" >> ~/.bashrc
 
 RUN conda install --yes \
-        python=3.12 \
-        warp-lang \
-        gtest \
-        nanobind \
-        cmake \
-        numpy \
-        gxx=13 \
+        python=3.11 \
         && conda clean --all --yes
 
 RUN pip install --no-cache-dir \

@@ -56,11 +56,11 @@ def bspline(x, grid, coeff, spline_order: int, out_dim: int):
 @pytest.mark.parametrize("grid_num", (6, 11, 21, 50, 51))
 @pytest.mark.parametrize("batch_size", (32, 2**10, 2**12))
 def test_bspline(in_dim, out_dim, grid_num, order, batch_size):
-    x = 2 * torch.randn(batch_size, in_dim).cuda()
+    x = 2 * torch.randn(batch_size, in_dim).cuda().clamp(-5, 5)
     x.requires_grad = True
 
     wpbspline = BSpline(in_dim, out_dim, order, grid_num,
-                        [-1, 1], enable_standalone_scale_spline=False).cuda()
+                        [-5, 5], enable_standalone_scale_spline=False).cuda()
 
     grid = wpbspline.grid
     wpbspline.coeff.data = torch.randn_like(wpbspline.coeff.data)
