@@ -27,7 +27,6 @@ pip install -e .
 
 ## Cite
 If you use this repository, please cite our paper:
-
 ```bash
 @misc{moradzadeh2025wanttrainkansscale,
       title={Want to train KANS at scale? Now UKAN!}, 
