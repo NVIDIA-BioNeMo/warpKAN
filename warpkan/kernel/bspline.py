@@ -77,8 +77,8 @@ def make_forward_closure_bspline(order: int, in_dim: int, out_dim: int, grid_num
                     val = val
                 else:
                     idg = binary_search(grid, x[b, i], i, grid_num)
-                    cvec = wp.select(idg >= 0 and idg <
-                                     grid_num - 1, dtype_wp(0.0), coeff[j, i, idg])
+                    cvec = wp.where(idg >= 0 and idg <
+                                     grid_num - 1, coeff[j, i, idg], dtype_wp(0.0))
                     val = val + cvec
 
             y[b, j] = val
@@ -113,8 +113,8 @@ def make_forward_closure_bspline(order: int, in_dim: int, out_dim: int, grid_num
 
                     cnt = int(1)
                     for cidx in range(idg, idg - 2, -1):
-                        cvec[cnt] = wp.select(
-                            cidx >= 0 and cidx < grid_num - 2, dtype_wp(0.0), coeff[j, i, cidx])
+                        cvec[cnt] = wp.where(
+                            cidx >= 0 and cidx < grid_num - 2, coeff[j, i, cidx], dtype_wp(0.0))
                         cnt = cnt - int(1)
 
                     res_right = vec2(wp.dot(tvec, mat20),
@@ -157,8 +157,8 @@ def make_forward_closure_bspline(order: int, in_dim: int, out_dim: int, grid_num
 
                     cnt = int(2)
                     for cidx in range(idg, idg - 3, -1):
-                        cvec[cnt] = wp.select(
-                            cidx >= 0 and cidx < grid_num - 3, dtype_wp(0.0), coeff[j, i, cidx])
+                        cvec[cnt] = wp.where(
+                            cidx >= 0 and cidx < grid_num - 3, coeff[j, i, cidx], dtype_wp(0.0))
                         cnt = cnt - int(1)
 
                     res_right = vec3(wp.dot(tvec, mat30),
@@ -205,8 +205,8 @@ def make_forward_closure_bspline(order: int, in_dim: int, out_dim: int, grid_num
                     t = (x[b, i] - g) / dg
                     cnt = int(3)
                     for cidx in range(idg, idg - 4, -1):
-                        cvec[cnt] = wp.select(
-                            cidx >= 0 and cidx < grid_num - 4, dtype_wp(0.0), coeff[j, i, cidx])
+                        cvec[cnt] = wp.where(
+                            cidx >= 0 and cidx < grid_num - 4, coeff[j, i, cidx], dtype_wp(0.0))
                         cnt = cnt - int(1)
 
                     for w in range(2, -1, -1):
@@ -258,8 +258,8 @@ def make_forward_closure_bspline(order: int, in_dim: int, out_dim: int, grid_num
                     t = (x[b, i] - g) / dg
                     cnt = int(4)
                     for cidx in range(idg, idg - 5, -1):
-                        cvec[cnt] = wp.select(
-                            cidx >= 0 and cidx < grid_num - 5, dtype_wp(0.0), coeff[j, i, cidx])
+                        cvec[cnt] = wp.where(
+                            cidx >= 0 and cidx < grid_num - 5, coeff[j, i, cidx], dtype_wp(0.0))
                         cnt = cnt - int(1)
 
                     for w in range(3, -1, -1):
@@ -379,8 +379,8 @@ def make_backward_closure_bspline(order: int, in_dim: int, out_dim: int, grid_nu
 
                 cnt = int(1)
                 for cidx in range(idg, idg - 2, -1):
-                    cvec[cnt] = wp.select(
-                        cidx >= 0 and cidx < grid_num - 2, 0.0, coeff[j, i, cidx])
+                    cvec[cnt] = wp.where(
+                        cidx >= 0 and cidx < grid_num - 2, coeff[j, i, cidx], dtype_wp(0.0))
                     cnt = cnt - int(1)
 
                 res_left = vec2(wp.dot(mat20, cvec),
@@ -442,8 +442,8 @@ def make_backward_closure_bspline(order: int, in_dim: int, out_dim: int, grid_nu
 
                 cnt = int(2)
                 for cidx in range(idg, idg - 3, -1):
-                    cvec[cnt] = wp.select(
-                        cidx >= 0 and cidx < grid_num - 3, dtype_wp(0.0), coeff[j, i, cidx])
+                    cvec[cnt] = wp.where(
+                        cidx >= 0 and cidx < grid_num - 3, coeff[j, i, cidx], dtype_wp(0.0))
                     cnt = cnt - int(1)
 
                 res_left = vec3(wp.dot(mat03, cvec),
@@ -522,8 +522,8 @@ def make_backward_closure_bspline(order: int, in_dim: int, out_dim: int, grid_nu
 
                 cnt = int(3)
                 for cidx in range(idg, idg - 4, -1):
-                    cvec[cnt] = wp.select(
-                        cidx >= 0 and cidx < grid_num - 4, dtype_wp(0.0), coeff[j, i, cidx])
+                    cvec[cnt] = wp.where(
+                        cidx >= 0 and cidx < grid_num - 4, coeff[j, i, cidx], dtype_wp(0.0))
 
                     cnt = cnt - int(1)
 
@@ -610,8 +610,8 @@ def make_backward_closure_bspline(order: int, in_dim: int, out_dim: int, grid_nu
 
                 cnt = int(4)
                 for cidx in range(idg, idg - 5, -1):
-                    cvec[cnt] = wp.select(
-                        cidx >= 0 and cidx < grid_num - 5, dtype_wp(0.0), coeff[j, i, cidx])
+                    cvec[cnt] = wp.where(
+                        cidx >= 0 and cidx < grid_num - 5, coeff[j, i, cidx], dtype_wp(0.0))
 
                     cnt = cnt - int(1)
 

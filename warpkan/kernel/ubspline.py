@@ -63,7 +63,7 @@ def make_forward_closure_ubspline(order: int, in_dim: int, out_dim: int, dtype: 
                 idg = idgs[b, i]
                 t = x[b, i] / grid_delta - dtype_wp(idg)
                 start = idg % 4
-                start = wp.select(start < 0, start, start + 4)
+                start = wp.where(start < 0, start + 4, start)
                 elem = int(3)
                 for cnt in range(start+4, start, -1):
                     cvec[elem] = coeff[b, i + j * in_dim, cnt]
@@ -103,7 +103,7 @@ def make_forward_closure_ubspline(order: int, in_dim: int, out_dim: int, dtype: 
                 idg = idgs[b, i]
                 t = x[b, i] / grid_delta - dtype_wp(idg)
                 start = idg % 3
-                start = wp.select(start < 0, start, start + 3)
+                start = wp.where(start < 0, start + 3, start)
                 elem = int(2)
                 for cnt in range(start+3, start, -1):
                     cvec[elem] = coeff[b, i + j * in_dim, cnt]
@@ -142,7 +142,7 @@ def make_forward_closure_ubspline(order: int, in_dim: int, out_dim: int, dtype: 
                 idg = idgs[b, i]
                 t = x[b, i] / grid_delta - dtype_wp(idg)
                 start = idg % 2
-                start = wp.select(start < 0, start, start + 2)
+                start = wp.where(start < 0, start + 2, start)
                 elem = int(1)
                 for cnt in range(start+2, start, -1):
                     cvec[elem] = coeff[b, i + j * in_dim, cnt]
@@ -248,7 +248,7 @@ def make_backward_closure_ubspline(order: int, in_dim: int, out_dim: int, dtype:
             cvec = vec4(dtype_wp(0.0))
 
             start = idg % 4
-            start = wp.select(start < 0, start, start + 4)
+            start = wp.where(start < 0, start + 4, start)
 
             for j in range(out_dim):
                 dy_ = dy[b, j] / dtype_wp(6.0)
@@ -312,7 +312,7 @@ def make_backward_closure_ubspline(order: int, in_dim: int, out_dim: int, dtype:
             cvec = vec3(dtype_wp(0.0))
 
             start = idg % 3
-            start = wp.select(start < 0, start, start + 3)
+            start = wp.where(start < 0, start + 3, start)
 
             for j in range(out_dim):
                 dy_ = dy[b, j] / dtype_wp(2.0)
@@ -366,7 +366,7 @@ def make_backward_closure_ubspline(order: int, in_dim: int, out_dim: int, dtype:
             cvec = vec2(dtype_wp(0.0))
 
             start = idg % 2
-            start = wp.select(start < 0, start, start + 2)
+            start = wp.where(start < 0, start + 2, start)
 
             for j in range(out_dim):
                 dy_ = dy[b, j]
