@@ -496,7 +496,7 @@ def make_backward_closure_bspline(order: int, in_dim: int, out_dim: int, grid_nu
 
             dx_ = dtype_wp(0.0)
 
-            if x[b, i] >= grid[i, grid_num - 1] or grid[i, 0] >= x[b, i]:
+            if x[b, i] >= grid[i, grid_num - 1] or grid[i, 0] > x[b, i]:
                 dx[b, i] = dx_
                 return
             idg = binary_search(grid, x[b, i], i, grid_num)
@@ -583,7 +583,7 @@ def make_backward_closure_bspline(order: int, in_dim: int, out_dim: int, grid_nu
 
             dx_ = dtype_wp(0.0)
 
-            if x[b, i] >= grid[i, grid_num - 1] or grid[i, 0] >= x[b, i]:
+            if x[b, i] >= grid[i, grid_num - 1] or grid[i, 0] > x[b, i]:
                 dx[b, i] = dx_
                 return
             idg = binary_search(grid, x[b, i], i, grid_num)
